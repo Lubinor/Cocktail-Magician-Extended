@@ -15,5 +15,7 @@ namespace CocktailMagician.Models
         public bool IsDeleted { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageSource { get; set; }
+        public int CreatorId { get; set; }
+        public User Creator { get; set; }
     }
 }

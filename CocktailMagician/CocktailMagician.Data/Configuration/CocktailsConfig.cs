@@ -13,6 +13,13 @@ namespace CocktailMagician.Data.Configuration
             builder.Property(cocktail => cocktail.Name)
                 .IsRequired()
                 .HasMaxLength(30);
+
+            builder.HasOne(cocktail => cocktail.Creator)
+                .WithMany(user => user.CreatedCocktails)
+                .HasForeignKey(key => key.CreatorId);
+
+            //builder.Property(cocktail => cocktail.UserId)
+            //    .IsRequired();
         }
     }
 }

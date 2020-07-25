@@ -17,6 +17,8 @@ namespace CocktailMagician.Services.DTOs
         public bool IsDeleted { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageSource { get; set; }
+        public int CreatorId { get; set; }
+        public string CreatorName { get; set; }
 
         //public override bool Equals(object obj)
         //{

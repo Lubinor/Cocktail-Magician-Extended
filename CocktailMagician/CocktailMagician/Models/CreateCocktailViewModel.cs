@@ -17,5 +17,6 @@ namespace CocktailMagician.Web.Models
         public IFormFile File { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageSource { get; set; }
+        public int CreatorId { get; set; }
     }
 }

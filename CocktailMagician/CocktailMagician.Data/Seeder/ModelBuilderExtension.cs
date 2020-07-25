@@ -183,36 +183,42 @@ namespace CocktailMagician.Data.Seeder
                     Id = 1,
                     Name = "Mojito",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 2
                 },
                 new Cocktail
                 {
                     Id = 2,
                     Name = "Cuba Libre",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 2
                 },
                 new Cocktail
                 {
                     Id = 3,
                     Name = "Sex on the Beach",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 2
                 },
                 new Cocktail
                 {
                     Id = 4,
                     Name = "Mai Tai",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 1
                 },
                 new Cocktail
                 {
                     Id = 5,
                     Name = "Gin Fizz",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 1
                 },
                 new Cocktail
                 {
                     Id = 6,
                     Name = "Bloody Mary",
                     CreatedOn = DateTime.UtcNow,
+                    CreatorId = 2
                 }
                 );
 

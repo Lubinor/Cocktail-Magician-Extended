@@ -1,6 +1,7 @@
 ﻿using CocktailMagician.Models;
 using CocktailMagician.Services.DTOs;
 using CocktailMagician.Services.Mappers.Contracts;
+using System.Linq;
 
 namespace CocktailMagician.Services.Mappers
 {
@@ -13,7 +14,11 @@ namespace CocktailMagician.Services.Mappers
                 Id = user.Id,
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
-                Email = user.Email
+                Email = user.Email,
+                CreatedCocktails = user.CreatedCocktails
+                            .Where(c => !c.IsDeleted) //is it ok here?
+                            .Select(cocktail => new CocktailDTO { Id = cocktail.Id, Name = cocktail.Name })
+                            .ToList(),
             };
 
             return userDTO;

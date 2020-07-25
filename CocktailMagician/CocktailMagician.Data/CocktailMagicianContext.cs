@@ -3,6 +3,7 @@ using CocktailMagician.Data.Seeder;
 using CocktailMagician.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CocktailMagician.Data
 {
@@ -26,17 +27,22 @@ namespace CocktailMagician.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new IngredientsConfig());
-            modelBuilder.ApplyConfiguration(new CocktailsConfig());
             modelBuilder.ApplyConfiguration(new BarsConfig());
             modelBuilder.ApplyConfiguration(new CitiesConfig());
             modelBuilder.ApplyConfiguration(new IngredientsCocktailsConfig());
             modelBuilder.ApplyConfiguration(new BarsCocktailsConfig());
             modelBuilder.ApplyConfiguration(new CocktailsUsersReviewsConfig());
             modelBuilder.ApplyConfiguration(new BarsUsersReviewsConfig());
+            modelBuilder.ApplyConfiguration(new CocktailsConfig());
 
             modelBuilder.Seeder();
 
             base.OnModelCreating(modelBuilder);
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }

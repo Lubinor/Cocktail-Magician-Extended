@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CocktailMagician.Data.Migrations
 {
     [DbContext(typeof(CocktailMagicianContext))]
-    [Migration("20200607171533_Initial")]
+    [Migration("20200725224307_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<double>("AverageRating")
                         .HasColumnType("float");
@@ -57,7 +58,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
@@ -72,7 +74,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "104 Vitosha blvd.",
                             AverageRating = 0.0,
                             CityId = 1,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(1205),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(3748),
                             IsDeleted = false,
                             Name = "Memento",
                             Phone = "0889 555 682"
@@ -83,7 +85,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "22 Tsar Ivan Shishman str.",
                             AverageRating = 0.0,
                             CityId = 1,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(2704),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(4679),
                             IsDeleted = false,
                             Name = "Bilkova",
                             Phone = "0898 639 068"
@@ -94,7 +96,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "36 Yoakim Gruev str.",
                             AverageRating = 0.0,
                             CityId = 2,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(2749),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(4709),
                             IsDeleted = false,
                             Name = "Petnoto",
                             Phone = "0878 509 703"
@@ -105,7 +107,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "Central Beach",
                             AverageRating = 0.0,
                             CityId = 3,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(2749),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(4711),
                             IsDeleted = false,
                             Name = "Cubo",
                             Phone = "0898 425 232"
@@ -116,7 +118,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "1 Tsar Peter str.",
                             AverageRating = 0.0,
                             CityId = 4,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(2753),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(4713),
                             IsDeleted = false,
                             Name = "Barcode",
                             Phone = "0895 509 659"
@@ -127,7 +129,7 @@ namespace CocktailMagician.Data.Migrations
                             Address = "53 Stefan Stambolov blvd.",
                             AverageRating = 0.0,
                             CityId = 4,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 134, DateTimeKind.Utc).AddTicks(2753),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(4716),
                             IsDeleted = false,
                             Name = "Fabric Club",
                             Phone = "0887 909 019"
@@ -310,28 +312,28 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 132, DateTimeKind.Utc).AddTicks(5926),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(4699),
                             IsDeleted = false,
                             Name = "Sofia"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 132, DateTimeKind.Utc).AddTicks(7050),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(5330),
                             IsDeleted = false,
                             Name = "Plovdiv"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 132, DateTimeKind.Utc).AddTicks(7059),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(5356),
                             IsDeleted = false,
                             Name = "Varna"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 132, DateTimeKind.Utc).AddTicks(7064),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(5358),
                             IsDeleted = false,
                             Name = "Burgas"
                         });
@@ -350,6 +352,9 @@ namespace CocktailMagician.Data.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
 
@@ -366,6 +371,8 @@ namespace CocktailMagician.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorId");
+
                     b.ToTable("Cocktails");
 
                     b.HasData(
@@ -373,7 +380,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 1,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(5529),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(394),
+                            CreatorId = 2,
                             IsDeleted = false,
                             Name = "Mojito"
                         },
@@ -381,7 +389,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 2,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(6381),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(1308),
+                            CreatorId = 2,
                             IsDeleted = false,
                             Name = "Cuba Libre"
                         },
@@ -389,7 +398,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 3,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(6395),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(1325),
+                            CreatorId = 2,
                             IsDeleted = false,
                             Name = "Sex on the Beach"
                         },
@@ -397,7 +407,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 4,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(6395),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(1327),
+                            CreatorId = 1,
                             IsDeleted = false,
                             Name = "Mai Tai"
                         },
@@ -405,7 +416,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 5,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(6399),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(1329),
+                            CreatorId = 1,
                             IsDeleted = false,
                             Name = "Gin Fizz"
                         },
@@ -413,7 +425,8 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 6,
                             AverageRating = 0.0,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(6399),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 674, DateTimeKind.Utc).AddTicks(1331),
+                            CreatorId = 2,
                             IsDeleted = false,
                             Name = "Bloody Mary"
                         });
@@ -478,91 +491,91 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(915),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(7510),
                             IsDeleted = false,
                             Name = "Vodka"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1758),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8030),
                             IsDeleted = false,
                             Name = "Gin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1767),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8041),
                             IsDeleted = false,
                             Name = "Rum"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1767),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8044),
                             IsDeleted = false,
                             Name = "Soda"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1772),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8046),
                             IsDeleted = false,
                             Name = "Coke"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1772),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8092),
                             IsDeleted = false,
                             Name = "Lemon juice"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1776),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8093),
                             IsDeleted = false,
                             Name = "Sugar"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1776),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8095),
                             IsDeleted = false,
                             Name = "Milk"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1776),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8096),
                             IsDeleted = false,
                             Name = "Coffee liqueur"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1780),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8097),
                             IsDeleted = false,
                             Name = "Orange juice"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1780),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8099),
                             IsDeleted = false,
                             Name = "Tomato juice"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1780),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8101),
                             IsDeleted = false,
                             Name = "Tabasco"
                         },
                         new
                         {
                             Id = 13,
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 133, DateTimeKind.Utc).AddTicks(1780),
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 673, DateTimeKind.Utc).AddTicks(8102),
                             IsDeleted = false,
                             Name = "Lime"
                         });
@@ -716,14 +729,14 @@ namespace CocktailMagician.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "b42da4da-c387-4632-af12-a225f7d68b29",
+                            ConcurrencyStamp = "6c8a1361-25eb-4452-a970-5b119e7d5a38",
                             Name = "Bar Crawler",
                             NormalizedName = "BAR CRAWLER"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "6a4c48ed-486b-4816-94c1-195ebedf48ee",
+                            ConcurrencyStamp = "653ca683-cb31-42fb-9e2d-16f5c45fd2d7",
                             Name = "Cocktail Magician",
                             NormalizedName = "COCKTAIL MAGICIAN"
                         });
@@ -806,17 +819,17 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9c5ae9b6-c039-49aa-acec-14e89eeb2bea",
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 102, DateTimeKind.Utc).AddTicks(397),
+                            ConcurrencyStamp = "5ef5b47a-53f8-465d-a149-6786ed53958e",
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 654, DateTimeKind.Utc).AddTicks(7083),
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKUFENCrheMMSj1CQF2tgAz4d4nWA8Q12CPY/q+45t4puzPmLEAsk8E7N8ejdmhzmQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKeTWzLMhoQ8op9DyTnxDMRcByqDX28b66SPbU8h8GFZEMUaLLdBONmM/+HH+6viPQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d8295b4c-c7c3-4dd1-9dc7-a9d2fca29380",
+                            SecurityStamp = "7634aebe-1f77-4681-97af-4ddebd85ad6d",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
                         },
@@ -824,17 +837,17 @@ namespace CocktailMagician.Data.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7fc5e8c-3e61-4498-9f2c-c3a09b519fbb",
-                            CreatedOn = new DateTime(2020, 6, 7, 17, 15, 32, 121, DateTimeKind.Utc).AddTicks(1941),
+                            ConcurrencyStamp = "a7a0b805-914d-4628-85d0-697cb8d5f4ea",
+                            CreatedOn = new DateTime(2020, 7, 25, 22, 43, 6, 667, DateTimeKind.Utc).AddTicks(304),
                             Email = "user@user.com",
                             EmailConfirmed = false,
                             IsDeleted = false,
                             LockoutEnabled = true,
                             NormalizedEmail = "USER@USER.COM",
                             NormalizedUserName = "USER@USER.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJFQr8PzJFKyAi8/Wor00rgySTwxVAy1skCmkjGbvvKlM+T6hUaYOb15yDP8PvmCsg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFlZMHp8m2KU83UnynVz3Batt7TG8N1i2GWdzQqb3sG3VDjvWeANYCp3tDHeRWQV2Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1b659633-52b3-473c-b579-78e2edb96185",
+                            SecurityStamp = "f4bf961c-0e41-4c92-9642-b0b6dd1a0da1",
                             TwoFactorEnabled = false,
                             UserName = "user@user.com"
                         });
@@ -958,7 +971,7 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.City", "City")
                         .WithMany("Bars")
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -967,13 +980,13 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Bar", "Bar")
                         .WithMany("BarCocktails")
                         .HasForeignKey("BarId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CocktailMagician.Models.Cocktail", "Cocktail")
                         .WithMany("CocktailBars")
                         .HasForeignKey("CocktailId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -982,13 +995,22 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Bar", "Bar")
                         .WithMany("BarReviews")
                         .HasForeignKey("BarId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CocktailMagician.Models.User", "User")
                         .WithMany("BarReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CocktailMagician.Models.Cocktail", b =>
+                {
+                    b.HasOne("CocktailMagician.Models.User", "Creator")
+                        .WithMany("CreatedCocktails")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -997,13 +1019,13 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Cocktail", "Cocktail")
                         .WithMany("Reviews")
                         .HasForeignKey("CocktailId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CocktailMagician.Models.User", "User")
                         .WithMany("CocktailReviews")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1012,13 +1034,13 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Cocktail", "Cocktail")
                         .WithMany("IngredientsCocktails")
                         .HasForeignKey("CocktailId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CocktailMagician.Models.Ingredient", "Ingredient")
                         .WithMany("IngredientsCocktails")
                         .HasForeignKey("IngredientId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1027,7 +1049,7 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1036,7 +1058,7 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1045,7 +1067,7 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1054,13 +1076,13 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("CocktailMagician.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1069,7 +1091,7 @@ namespace CocktailMagician.Data.Migrations
                     b.HasOne("CocktailMagician.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

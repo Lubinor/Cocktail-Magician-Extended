@@ -46,6 +46,7 @@ namespace CocktailMagician.Services
                     .ThenInclude(c => c.City)
                 .Include(cocktail => cocktail.IngredientsCocktails)
                     .ThenInclude(ic => ic.Ingredient)
+                .Include(cocktail => cocktail.Creator)
                 .Where(cocktail => cocktail.IsDeleted == false);
 
             var cocktailDTOs = await cocktails.Select(cocktail => mapper.MapToCocktailDTO(cocktail)).ToListAsync();
@@ -71,6 +72,7 @@ namespace CocktailMagician.Services
                     .ThenInclude(c => c.City)
                 .Include(ingredient => ingredient.IngredientsCocktails)
                     .ThenInclude(ic => ic.Ingredient)
+                .Include(c => c.Creator)
                 .FirstOrDefaultAsync(cocktail => cocktail.Id == id & cocktail.IsDeleted == false);
 
             if (cocktail == null)
@@ -83,6 +85,7 @@ namespace CocktailMagician.Services
 
             var cocktailIngredient = cocktail.IngredientsCocktails.Select(x => x.Ingredient);
             var cocktailBars = cocktail.CocktailBars.Select(x => x.Bar);
+
             cocktailDTO.Ingredients = cocktailIngredient.Where(c => c.IsDeleted == false)
                 .Select(x => ingredientMapper.MapToIngredientDTO(x)).ToList();
             cocktailDTO.Bars = cocktailBars.Where(b => b.IsDeleted == false)
@@ -184,6 +187,7 @@ namespace CocktailMagician.Services
                     .ThenInclude(i => i.Ingredient)
                 .Include(cocktail => cocktail.CocktailBars)
                     .ThenInclude(b => b.Bar)
+                .Include(cocktail => cocktail.Creator)
                 .Where(cocktail => cocktail.IsDeleted == false);
 
             if (!string.IsNullOrEmpty(orderBy))

@@ -37,7 +37,8 @@ namespace CocktailMagician.Web.Mappers
                     Name = i.Name
                 }).ToList(),
                 ImageData = cocktailDTO.ImageData,
-                ImageSource = cocktailDTO.ImageSource
+                ImageSource = cocktailDTO.ImageSource,
+                Creator = cocktailDTO.CreatorName
             };
             return cocktailVM;
         }
@@ -74,6 +75,7 @@ namespace CocktailMagician.Web.Mappers
                 {
                     Id = i
                 }).ToList(),
+                CreatorId = createCocktailVM.CreatorId
             };
 
             if (createCocktailVM.File != null)

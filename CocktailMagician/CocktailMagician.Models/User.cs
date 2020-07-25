@@ -10,5 +10,6 @@ namespace CocktailMagician.Models
         public ICollection<BarsUsersReviews> BarReviews { get; set; } = new HashSet<BarsUsersReviews>();
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
         public bool IsDeleted { get; set; }
+        public ICollection<Cocktail> CreatedCocktails { get; set; } = new HashSet<Cocktail>();
     }
 }
