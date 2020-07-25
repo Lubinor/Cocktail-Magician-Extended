@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CityViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Cities</h1>
+
+<p>
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a asp-action="Create" class="btn btn-primary font-weight-bold">Create New</a>
+    }
+</p>
+<table class="cell-border table-hover" id="Cities">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Bars
+            </th>
+        </tr>
+    </thead>
+</table>
+
+<link href="~/DataTables/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="~/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+@*<style>    table tr {
+            background-color: rgba(255,255,255,0.3);
+        }
+    </style>*@
+@section Scripts
+    {
+    <script src="~/DataTables/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <script>
+        $('#Cities').DataTable
+            ({
+            "serverSide": true,
+            "ordering" : true,
+            "processing" : true,
+            "paging": true,
+            //"pageLength": 5,
+            //"lengthMenu": [5,10,25,50,100],
+            "pagingType": "simple_numbers",
+            "ajax" : {
+            "url" : "@Url.Action("ListAllCities", "Cities")" ,
+            "type" : "POST" ,
+            "dataType" : "json" ,
+                },
+            "columns" : [
+                //{ "data": "name", "name": "Name", "autoWidth": true,},
+                {
+                    render: function (data, type, full, meta) {
+                        return '<a class = "btn btn-warning font-weight-bold" href="/cities/Details/' + full.id + '">'+full.name+'</a>';
+                    },
+                    "name":"Name"
+                },
+                {
+                    "data": "bars", "autoWidth": true, "orderable": true,
+                    render: function (data, type, row) {
+                        var buttons = '';
+                        for (i = 0; i < data.length; i++) {
+                            buttons += '<a style="margin: 2px 2px 2px 2px;" class="btn btn-outline-warning" href ="/bars/Details/' + data[i].id + '">' + data[i].name + ' ' + '</a>'
+                        }
+                        return buttons;
+                    },
+                },
+                //{ "data": "barNames", "name": "BarNames", "autoWidth": true, "orderable": false, },
+                //{
+                //    data: null, "width": "10%","orderable":false , render: function (data, type, row, meta) {
+                //        return '<a class="btn btn-danger" href="/Cities/Delete/' + row.id + '">Delete</a>';
+                //    }
+                //},
+
+            ]});
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

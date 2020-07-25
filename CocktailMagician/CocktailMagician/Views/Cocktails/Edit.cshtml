@@ -1,0 +1,85 @@
+﻿@model CocktailMagician.Web.Models.EditCocktailViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/mdb.min.css" />
+
+<h4>Edit @Model.Name</h4>
+<hr />
+<div class="row" >
+    <div class="col-md-4" >
+        <form asp-action="Edit" asp-controller="Cocktails" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Change Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker" asp-for="@Model.ContainedIngredients" asp-items="@ViewBag.Ingredients"
+                        multiple data-live-search="true">
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker" asp-for="@Model.ContainedBars" asp-items="@ViewBag.Bars"
+                        data-live-search="true">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input type="file" asp-for="File" id="files">
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            @if (User.IsInRole("Cocktail Magician"))
+            {
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary font-weight-bold" />
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a class="btn btn-primary font-weight-bold" asp-controller="Cocktails" asp-action="Delete"
+           asp-route-id="@Model.Id">Delete</a>
+    }
+    <a class="btn btn-primary font-weight-bold" asp-controller="Cocktails" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var typingTimer;
+
+            $('#Name').on('keyup', function () {
+                debugger;
+                var $this = $(this);
+                var inputFor = $this.attr('name');
+
+                setTimeout(() => {
+                    if ($this.val().length < 2) {
+
+                        toastr.error(`${inputFor} is too short`);
+                        console.log(`${inputFor} is too short`);
+                    }
+                    else if ($this.val().length === 30) {
+
+                        toastr.error(`${inputFor} must be no more than 30 characters`);
+                        console.log(`${inputFor} must be no more than 30 characters`);
+                    }
+                }, 500);
+
+                $('#Name').on('keydown', function () {
+                    clearTimeout(typingTimer);
+                });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

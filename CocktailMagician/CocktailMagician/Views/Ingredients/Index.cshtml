@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CocktailMagician.Web.Models.IngredientViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Ingredients</h1>
+
+<p>
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a asp-action="Create" class="btn btn-primary font-weight-bold">Create New</a>
+    }
+</p>
+<table id="Ingredients" class="cell-border table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Cocktails</th>
+        </tr>
+    </thead>
+</table>
+
+<link href="~/DataTables/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="~/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+@section Scripts
+    {
+    <script src="~/DataTables/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <script>
+        $('#Ingredients').DataTable
+            ({
+            "serverSide": true,
+            "ordering" : true,
+            "processing" : true,
+            "paging": true,
+            "pagingType": "simple_numbers",
+            "ajax" : {
+            "url" : "@Url.Action("ListAllIngredients", "Ingredients")" ,
+            "type" : "POST" ,
+            "dataType" : "json" ,
+                },
+            "columns": [
+                {
+                    "data": "imageSource", "name": "ImageSource", "autoWidth": true, "orderable": false, "width": "150px",
+                    render: function (url, type, full) {
+                        return '<img src="' + full.imageSource + '"' + 'style="max-width:150px; max-height:150px;"/>';
+                    }
+                },
+                {
+                    render: function (data, type, full, meta) {
+                        return '<a class = "btn btn-warning font-weight-bold" href="/ingredients/Details/' + full.id + '">'+full.name+'</a>';
+                    },
+                    "name":"Name"
+                },
+                {
+                    "data": "cocktails", "autoWidth": true, "orderable": false,
+                    render: function (data, type, row) {
+                        var buttons = '';
+                        for (i = 0; i < data.length; i++) {
+                            buttons += '<a style="margin: 2px 2px 2px 2px;" class="btn btn-outline-warning" href ="/cocktails/Details/'
+                                + data[i].id + '">' + data[i].name + ' ' + '</a>'
+                        }
+                        return buttons;
+                    },
+                },
+                //{
+                //    data: null, "width": "10%","orderable":false , render: function (data, type, row, meta) {
+                //        return '<a class="btn btn-danger" href="/Ingredients/Delete/' + row.id + '">Delete</a>';
+                //    }
+                //},
+
+            ]});
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

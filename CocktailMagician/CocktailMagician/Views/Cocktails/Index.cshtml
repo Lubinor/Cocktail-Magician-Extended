@@ -1,0 +1,107 @@
+﻿@model IEnumerable<CocktailMagician.Web.Models.CocktailViewModel>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/DataTables/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="~/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+<h1>Cocktails</h1>
+
+<p>
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a asp-action="Create" class="btn btn-primary font-weight-bold">Create New</a>
+    }
+</p>
+<table id="Cocktails" class="cell-border table-hover">
+    <thead class="dt-body-center">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Bars</th>
+            <th>Ingredients</th>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts
+    {
+    <script src="~/DataTables/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <script>
+        $('#Cocktails').DataTable
+            ({
+            "serverSide": true,
+            "ordering" : true,
+            "processing" : true,
+            "paging": true,
+            "pageLength": 5,
+            "lengthMenu": [5,10,25,50,100],
+            "pagingType": "simple_numbers",
+            "ajax" : {
+            "url" : "@Url.Action("ListAllCocktails", "Cocktails")" ,
+            "type" : "POST" ,
+            "dataType" : "json" ,
+                },
+                drawCallback: function (settings) {
+                    // Here the response
+                    var response = settings.json;
+                    console.log(response);
+                    var role = response.role;
+                    //console.log(role);
+                    //return role;
+                },
+            "columns": [
+                {
+                        "data": "imageSource", "name": "ImageSource", "autoWidth": true, "orderable": false,
+                        render: function (url, type, full) {
+                            return '<img src="' + full.imageSource + '"' + 'style="max-width:150px; max-height:150px;"/>';
+                        }
+                },
+                {
+                    "name": "Name","width":"15%", render: function (data, type, full, meta) {
+                        return '<a class = "btn btn-warning font-weight-bold" href="/cocktails/Details/' + full.id + '">' + full.name + '</a>';
+                    },
+                },
+                {
+                    "data": "bars", "autoWidth": true, "orderable": false,
+                    render: function (data, type, row) {
+                        var buttons = '';
+                        for (i = 0; i < data.length; i++) {
+                            buttons += '<a style="margin: 2px 2px 2px 2px;" class="btn btn-outline-warning" href ="/bars/Details/'
+                                + data[i].id + '">' + data[i].name + ' ' + '</a>'
+                        }
+                        return buttons;
+                    },
+                },
+                {
+                    "data": "ingredients", "autoWidth": true, "orderable": false,
+                    render: function (data, type, row) {
+                        var buttons = '';
+                        for (i = 0; i < data.length; i++) {
+                            buttons += '<a style="margin: 2px 2px 2px 2px;" class="btn btn-outline-warning" href ="/ingredients/Details/'
+                                + data[i].id + '">' + data[i].name + ' ' + '</a>'
+                        }
+                        return buttons;
+                    },
+                },
+                {
+                    "data": 'averageRating', "name": "AverageRating",
+                    render: function (data, type, row, meta) {
+                        return type === 'display' ?
+                            '<progress value="' + data + '" max="5"></progress>' :
+                            data;
+                    }
+                },
+            ]});
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

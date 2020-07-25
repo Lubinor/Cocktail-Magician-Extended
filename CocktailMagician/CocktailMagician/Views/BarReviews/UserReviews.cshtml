@@ -1,0 +1,49 @@
+﻿@model ListBarReviewsViewModel
+
+@{
+    ViewData["Title"] = "BarReviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reviews</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewComment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AllBarReviews)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @if (User.IsInRole("Bar Crawler"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ });
+                    }
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

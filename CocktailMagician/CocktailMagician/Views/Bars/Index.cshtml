@@ -1,0 +1,101 @@
+﻿@model IEnumerable<BarViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bars</h1>
+
+<p>
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a asp-action="Create" class="btn btn-primary font-weight-bold">Create New</a>
+    }
+</p>
+<table class="cell-border table-hover" id="Bars">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Average Rating</th>
+            <th>Cocktails</th>
+        </tr>
+    </thead>
+</table>
+<link href="~/DataTables/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link href="~/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+@section Scripts
+    {
+    <script src="~/DataTables/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+    <script src="~/DataTables/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" class="init"></script>
+    <script>
+        $('#Bars').DataTable
+            ({
+            "serverSide": true,
+            "ordering" : true,
+            "processing" : true,
+            "paging": true,
+            //"pageLength": 5,
+            //"lengthMenu": [5,10,25,50,100],
+            "pagingType": "simple_numbers",
+            "ajax" : {
+            "url" : "@Url.Action("ListAllBars", "Bars")" ,
+            "type" : "POST" ,
+            "dataType" : "json" ,
+                },
+                drawCallback: function (settings) {
+                    var response = settings.json;
+                    console.log(response);
+                },
+            "columns" : [
+                {
+                    "data": "imageSource", "name": "ImageSource", "autoWidth": true, "orderable": false,
+                    render: function (url, type, full) {
+                        return '<img src="' + full.imageSource +'"' + 'style="max-width:150px; max-height:150px;"/>';
+                    }
+                },
+                {
+                    render: function (data, type, full, meta) {
+                        //return '<a class = "btn btn-warning" href="/bars/Details/' + full.id + '">'+full.name+'</a>';
+                        return '<a class = "btn btn-warning font-weight-bold" href="/bars/Details/' + full.id + '">'+full.name+'</a>';
+                    },
+                    "name":"Name"
+                },
+                { "data": "cityName", "name": "CityName", "autoWidth": true, "orderable": false, },
+                { "data": "address", "name": "Address", "autoWidth": true, "orderable": false, },
+                { "data": "phone", "name": "Phone", "autoWidth": true, "orderable": false, },
+                //{ "data": "averageRating", "name": "AverageRating", "type": "numeric", "autoWidth": true, "orderable": true, },
+                { "data": 'averageRating', "name": "AverageRating",
+                    render: function (data, type, row, meta) {
+                        return type === 'display' ?
+                            '<progress value="' + data + '" max="5"></progress>' :
+                            data;
+                    }
+                },
+                {
+                    "data": "cocktails", "autoWidth": true, "orderable": false,
+                    render: function (data, type, row) {
+                        var buttons = '';
+                        for (i = 0; i < data.length; i++) {
+                            buttons += '<a style="margin: 2px 2px 2px 2px;" class="btn btn-outline-warning" href ="/cocktails/Details/' + data[i].id + '">' + data[i].name + ' '+ '</a>'
+                        }
+                        return buttons;
+                    },
+                },
+                //{
+                //    data: null, "width": "10%", "orderable": false, render: function (data, type, row, meta) {
+                //        return '<a class="btn btn-danger" href="/Bars/Delete/' + row.id + '">Delete</a>';
+                //    }
+                //},
+            ]});
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

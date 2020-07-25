@@ -1,0 +1,35 @@
+﻿@model BarReviewViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Bar Crawler"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ })
+    }
+    <a class="btn btn-primary font-weight-bold" asp-controller="BarReviews" asp-action="BarReviews">Back to List</a>
+    <a class="btn btn-primary font-weight-bold" asp-controller="Bars" asp-action="Index">Back to Cocktails</a>
+</div>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

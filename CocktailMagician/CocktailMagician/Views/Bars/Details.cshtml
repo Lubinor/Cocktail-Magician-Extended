@@ -1,0 +1,79 @@
+﻿@model BarViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>@Model.Name</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AverageRating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AverageRating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cocktails)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var cocktail in Model.Cocktails)
+            {
+                <a style="margin: 0 2px;" class="btn btn-outline-danger font-weight-bold" href="/cocktails/Details/@cocktail.Id">@cocktail.Name</a>
+            }
+        </dd>
+        @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cocktails)
+            </dt>
+            <dd class="col-sm-10">
+                @if (Model.Cocktails.Count != 0)
+                {
+                    @string.Join(", ", Model.Cocktails.Select(b => b.Name));
+                }
+                else
+                {
+                    @Html.DisplayName("N/A");
+                }
+            </dd>*@
+    </dl>
+</div>
+<div>
+    <img src="@Model.ImageSource" style="width: 150px; height: 150px;" />
+</div>
+<div>
+    @if (User.IsInRole("Bar Crawler"))
+    {
+        <a asp-action="Create" asp-controller="BarReviews" asp-route-id="@Model.Id" class="btn btn-primary font-weight-bold">Rate & Comment</a>
+    }
+    @if (User.IsInRole("Cocktail Magician"))
+    {
+        <a class="btn btn-primary font-weight-bold" asp-controller="Bars" asp-action="Edit"
+           asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-primary font-weight-bold" asp-controller="Bars" asp-action="Delete"
+           asp-route-id="@Model.Id">Delete</a>
+    }
+    <a class="btn btn-primary font-weight-bold" asp-controller="BarReviews" asp-action="BarReviews"
+       asp-route-id="@Model.Id">Check all reviews</a>
+    <a class="btn btn-primary font-weight-bold" asp-controller="Bars" asp-action="Index">Back to List</a>
+</div>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

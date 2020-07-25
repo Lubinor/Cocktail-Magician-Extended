@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician.Web", "CocktailMagician\CocktailMagician\CocktailMagician.Web.csproj", "{E8951B86-EE77-4D48-9AD1-2538517FBC0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician.Models", "CocktailMagician\CocktailMagician.Models\CocktailMagician.Models.csproj", "{6B9B6E0F-E218-4C4A-BED7-FEBBF7E75FED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician.Data", "CocktailMagician\CocktailMagician.Data\CocktailMagician.Data.csproj", "{D16994A2-3EA8-4E3C-80A4-6B65B9189C88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CocktailMagician.Services", "CocktailMagician\CocktailMagician.Services\CocktailMagician.Services.csproj", "{61F9EF14-43D5-4FFE-A02A-4FC16151B76C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CocktailMagician.Tests", "CocktailMagician.Tests\CocktailMagician.Tests.csproj", "{B06966F9-020C-4517-86FA-AEE62F8A88E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8951B86-EE77-4D48-9AD1-2538517FBC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8951B86-EE77-4D48-9AD1-2538517FBC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8951B86-EE77-4D48-9AD1-2538517FBC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8951B86-EE77-4D48-9AD1-2538517FBC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B9B6E0F-E218-4C4A-BED7-FEBBF7E75FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B9B6E0F-E218-4C4A-BED7-FEBBF7E75FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B9B6E0F-E218-4C4A-BED7-FEBBF7E75FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B9B6E0F-E218-4C4A-BED7-FEBBF7E75FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D16994A2-3EA8-4E3C-80A4-6B65B9189C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D16994A2-3EA8-4E3C-80A4-6B65B9189C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D16994A2-3EA8-4E3C-80A4-6B65B9189C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D16994A2-3EA8-4E3C-80A4-6B65B9189C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F9EF14-43D5-4FFE-A02A-4FC16151B76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F9EF14-43D5-4FFE-A02A-4FC16151B76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F9EF14-43D5-4FFE-A02A-4FC16151B76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F9EF14-43D5-4FFE-A02A-4FC16151B76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06966F9-020C-4517-86FA-AEE62F8A88E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06966F9-020C-4517-86FA-AEE62F8A88E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06966F9-020C-4517-86FA-AEE62F8A88E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06966F9-020C-4517-86FA-AEE62F8A88E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A41DCEB5-4C02-4166-A95C-C7C24E886752}
+	EndGlobalSection
+EndGlobal

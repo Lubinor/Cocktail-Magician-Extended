@@ -1,0 +1,51 @@
+﻿@model ListBarReviewsViewModel
+
+@{
+    ViewData["Title"] = "BarReviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Reviews</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReviewComment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.AllBarReviews)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @if (User.IsInRole("Bar Crawler"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.BarId" class="btn btn-primary font-weight-bold">Edit your review</a>
+        <a asp-action="Delete" asp-route-id="@Model.BarId" class="btn btn-primary font-weight-bold">Delete your review</a>
+    }
+    <a asp-action="Index" asp-controller="Bars" class="btn btn-primary font-weight-bold">Back to Bars</a>
+</div>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
