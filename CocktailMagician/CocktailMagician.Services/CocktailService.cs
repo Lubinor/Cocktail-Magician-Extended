@@ -12,6 +12,7 @@ using CocktailMagician.Services.Helpers;
 using System.Threading.Tasks;
 using CocktailMagician.Models;
 using CocktailMagician.Services.ValidationModels;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace CocktailMagician.Services
 {
@@ -194,11 +195,25 @@ namespace CocktailMagician.Services
             {
                 if (string.IsNullOrEmpty(orderDirection) || orderDirection == "asc")
                 {
+                    if (orderBy == "Creator")
+                    {
+                        cocktails = cocktails.OrderBy(c => c.Creator.UserName);
+                    }
+                    else
+                    {
                     cocktails = cocktails.OrderBy(orderBy);
+                    }
                 }
                 else
                 {
-                    cocktails = cocktails.OrderByDescending(orderBy);
+                    if (orderBy == "Creator")
+                    {
+                        cocktails = cocktails.OrderByDescending(c => c.Creator.UserName);
+                    }
+                    else
+                    {
+                        cocktails = cocktails.OrderByDescending(orderBy);
+                    }
                 }
             }
 
@@ -207,8 +222,10 @@ namespace CocktailMagician.Services
                 searchValue = searchValue.ToLower();
 
                 cocktails = cocktails
-                     .Where(cocktail => cocktail.Name.ToLower()
-                     .Contains(searchValue.ToLower()));
+                     .Where(
+                    cocktail => cocktail.Name.ToLower().Contains(searchValue.ToLower()) ||
+                    cocktail.Creator.UserName.ToLower().Contains(searchValue.ToLower())
+                    );
             }
 
             cocktails = cocktails
@@ -233,7 +250,11 @@ namespace CocktailMagician.Services
                 searchValue = searchValue.ToLower();
 
                 var cocktails = this.context.Cocktails
-                     .Where(cocktail => cocktail.Name.ToLower().Contains(searchValue));
+                     .Where(
+                    cocktail => cocktail.Name.ToLower().Contains(searchValue.ToLower()) ||
+                    cocktail.Creator.UserName.ToLower().Contains(searchValue.ToLower())
+                    );
+
                 return cocktails.Count();
             }
             return this.context.Cocktails.Where(cocktail => cocktail.IsDeleted == false).Count();

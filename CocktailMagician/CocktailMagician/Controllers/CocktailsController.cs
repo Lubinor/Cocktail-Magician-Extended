@@ -11,6 +11,8 @@ using System.IO;
 using NToastNotify;
 using CocktailMagician.Web.Utilities;
 using Ganss.XSS;
+using Microsoft.AspNetCore.Identity;
+using CocktailMagician.Models;
 
 namespace CocktailMagician.Web.Controllers
 {
@@ -23,6 +25,7 @@ namespace CocktailMagician.Web.Controllers
         private readonly IIngredientDTOMapper ingredientDTOMapper;
         private readonly IBarDTOMapper barDTOMApper;
         private readonly IToastNotification toaster;
+        private readonly UserManager<User> userManager;
 
         public CocktailsController(
             ICocktailService cocktailService,
@@ -31,7 +34,9 @@ namespace CocktailMagician.Web.Controllers
             ICocktailDTOMapper cocktailDTOMapper,
             IIngredientDTOMapper ingredientDTOMapper,
             IBarDTOMapper barDTOMApper,
-            IToastNotification toaster)
+            IToastNotification toaster,
+            UserManager<User> userManager
+            )
         {
             this.cocktailService = cocktailService ?? throw new ArgumentNullException(nameof(cocktailService));
             this.ingredientService = ingredientService ?? throw new ArgumentNullException(nameof(ingredientService));
@@ -40,6 +45,7 @@ namespace CocktailMagician.Web.Controllers
             this.ingredientDTOMapper = ingredientDTOMapper ?? throw new ArgumentNullException(nameof(ingredientDTOMapper));
             this.barDTOMApper = barDTOMApper ?? throw new ArgumentNullException(nameof(barDTOMApper));
             this.toaster = toaster ?? throw new ArgumentNullException(nameof(toaster));
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
 
         [HttpGet]
@@ -170,6 +176,9 @@ namespace CocktailMagician.Web.Controllers
                         this.toaster.AddWarningToastMessage(ToastrConsts.NotUnique);
                         return RedirectToAction(nameof(Create));
                     }
+
+                    var currentUserId = int.Parse(userManager.GetUserId(HttpContext.User));
+                    cocktailDTO.CreatorId = currentUserId;
 
                     await this.cocktailService.CreateCocktailAsync(cocktailDTO);
 
