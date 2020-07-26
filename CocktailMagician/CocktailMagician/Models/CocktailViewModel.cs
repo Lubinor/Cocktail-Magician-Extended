@@ -26,6 +26,7 @@ namespace CocktailMagician.Web.Models
         public string BarNames { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageSource { get; set; }
+
         [DisplayName("Created By")]
         public string Creator { get; set; }
     }
