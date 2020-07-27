@@ -12,7 +12,7 @@ namespace CocktailMagician.Services.Contracts
         Task<CocktailDTO> CreateCocktailAsync(CocktailDTO cocktailDTO);
         Task<CocktailDTO> UpdateCocktailAsync(int id, CocktailDTO cocktailDTO);
         Task<bool> DeleteCocktailAsync(int id);
-        Task<IList<CocktailDTO>> ListAllCocktailsAsync(
+        Task<IEnumerable<CocktailDTO>> ListAllCocktailsAsync(
             int skip, 
             int pageSize, 
             string searchValue,

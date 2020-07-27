@@ -180,7 +180,7 @@ namespace CocktailMagician.Services
             return true;
         }
 
-        public async Task<IList<CocktailDTO>> ListAllCocktailsAsync(int skip, int pageSize, string searchValue,
+        public async Task<IEnumerable<CocktailDTO>> ListAllCocktailsAsync(int skip, int pageSize, string searchValue,
             string orderBy, string orderDirection)
         {
             var cocktails = this.context.Cocktails
@@ -190,32 +190,6 @@ namespace CocktailMagician.Services
                     .ThenInclude(b => b.Bar)
                 .Include(cocktail => cocktail.Creator)
                 .Where(cocktail => cocktail.IsDeleted == false);
-
-            if (!string.IsNullOrEmpty(orderBy))
-            {
-                if (string.IsNullOrEmpty(orderDirection) || orderDirection == "asc")
-                {
-                    if (orderBy == "Creator")
-                    {
-                        cocktails = cocktails.OrderBy(c => c.Creator.UserName);
-                    }
-                    else
-                    {
-                    cocktails = cocktails.OrderBy(orderBy);
-                    }
-                }
-                else
-                {
-                    if (orderBy == "Creator")
-                    {
-                        cocktails = cocktails.OrderByDescending(c => c.Creator.UserName);
-                    }
-                    else
-                    {
-                        cocktails = cocktails.OrderByDescending(orderBy);
-                    }
-                }
-            }
 
             if (!string.IsNullOrEmpty(searchValue))
             {
@@ -228,11 +202,11 @@ namespace CocktailMagician.Services
                     );
             }
 
-            cocktails = cocktails
-                .Skip(skip)
-                .Take(pageSize);
+            var sortedCocktails = orderDirection == "asc"
+                    ?  cocktails.OrderBy(CocktailsOrdering(orderBy)).Skip(skip).Take(pageSize)
+                    :  cocktails.OrderByDescending(CocktailsOrdering(orderBy)).Skip(skip).Take(pageSize);
 
-            var cocktailDTOs = await cocktails.Select(cocktail => mapper.MapToCocktailDTO(cocktail)).ToListAsync();
+            var cocktailDTOs = sortedCocktails.Select(cocktail => mapper.MapToCocktailDTO(cocktail));
 
             return cocktailDTOs;
         }
@@ -286,6 +260,17 @@ namespace CocktailMagician.Services
                 return false;
             }
             return true;
+        }
+
+        private Func<Cocktail, IComparable> CocktailsOrdering(string orderBy)
+        {
+            return orderBy switch
+            {
+                "Creator" => cocktail => cocktail.Creator.UserName,
+                "Name" => cocktail => cocktail.Name,
+                "AverageRating" => cocktail => cocktail.AverageRating,
+                _ => cocktail => cocktail.Id,
+            };
         }
     }
 }

@@ -381,7 +381,7 @@ namespace CocktailMagician.Web.Controllers
                 var json = Json(new { draw = draw, recordsFiltered = filteredCocktails, recordsTotal = totalCocktails, data = cocktailVMs });
                 return json;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 this.toaster.AddWarningToastMessage(ToastrConsts.GenericError);
                 return RedirectToAction(nameof(Index));

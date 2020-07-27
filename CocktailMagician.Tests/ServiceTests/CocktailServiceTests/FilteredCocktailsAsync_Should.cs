@@ -9,6 +9,7 @@ using CocktailMagician.Services.Providers.Contracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CocktailMagician.Tests.ServiceTests.CocktailServiceTests
@@ -48,11 +49,13 @@ namespace CocktailMagician.Tests.ServiceTests.CocktailServiceTests
                     mockIngMapper.Object, mockBarMapper.Object, assertContext, mockCocktailReviewService.Object);
                 var result = await sut.ListAllCocktailsAsync(0,10,filter,orderBy,direction);
 
-                Assert.AreEqual(expected.Count, result.Count);
+                var resultAsList = result.ToList();
+
+                Assert.AreEqual(expected.Count, resultAsList.Count);
                 
                 for (int i = 0; i < expected.Count; i++)
                 {
-                    Assert.AreEqual(expected[i].Name, result[i].Name);
+                    Assert.AreEqual(expected[i].Name, resultAsList[i].Name);
                 }
             }
         }
