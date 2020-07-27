@@ -12,3 +12,5 @@ The List/Get methods in the Cocktail Service now include the Creator as well. Th
 In the Cocktail Controller, the Create action features an extra line to get the Id of the current user who is creating the cocktail, and assigns it to the newly created cocktail.
 
 The DataTable for Cocktails (the index) and the individual Details screen for each Cocktail have their UI updated to display the new property.
+
+Fixed a few minor parts in the unit tests, since some of them were failing after the implementation of the new property.
