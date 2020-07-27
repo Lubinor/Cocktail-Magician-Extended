@@ -27,6 +27,7 @@ namespace CocktailMagician.Tests.ServiceTests.DTOMappersTests
                         .ThenInclude(b => b.Bar)
                     .Include(ingr => ingr.IngredientsCocktails)
                         .ThenInclude(i => i.Ingredient)
+                    .Include(c => c.Creator)
                     .FirstOrDefault(x => x.Id == 1);
 
                 var sut = new CocktailMapper();

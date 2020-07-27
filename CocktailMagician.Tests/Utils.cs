@@ -119,7 +119,7 @@ namespace CocktailMagician.Tests
                     IsDeleted = false
                 },
             };
-            
+
             var barReviews = new List<BarsUsersReviews>
             {
                 new BarsUsersReviews
@@ -273,7 +273,8 @@ namespace CocktailMagician.Tests
                     IngredientsCocktails = new List<IngredientsCocktails>
                     {
                         ingredientCocktails[0],ingredientCocktails[1]
-                    }
+                    },
+                    CreatorId = 1
                 },
                 new Cocktail
                 {
@@ -284,7 +285,9 @@ namespace CocktailMagician.Tests
                     IngredientsCocktails = new List<IngredientsCocktails>
                     {
                         ingredientCocktails[2],ingredientCocktails[3]
-                    }
+                    },
+                    CreatorId = 2
+
                 },
                 new Cocktail
                 {
@@ -295,7 +298,8 @@ namespace CocktailMagician.Tests
                     IngredientsCocktails = new List<IngredientsCocktails>
                     {
                         ingredientCocktails[0],ingredientCocktails[2]
-                    }
+                    },
+                    CreatorId = 2
                 }
             };
             using (var arrangeContext = new CocktailMagicianContext(options))
